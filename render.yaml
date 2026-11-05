@@ -1,0 +1,27 @@
+services:
+  # LifeLine Full-Stack Intelligence Web Service
+  - type: web
+    name: lifeline-intelligence
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false # Set this in Render Dashboard from your free MongoDB Atlas cluster
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        value: "*"
+      - key: DEFAULT_RADIUS_KM
+        value: "10"
+      - key: ESCALATION_MINUTES
+        value: "2"
+      - key: ESCALATION_MAX_RADIUS_KM
+        value: "100"
